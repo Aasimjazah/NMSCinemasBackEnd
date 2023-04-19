@@ -8,6 +8,8 @@ public class NmsCinemasBackEndApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(NmsCinemasBackEndApplication.class, args);
+		
+		System.out.println("I hello calling from main method");
 	}
 
 }
