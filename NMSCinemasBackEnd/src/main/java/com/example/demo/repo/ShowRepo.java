@@ -3,9 +3,9 @@ package com.example.demo.repo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.entities.Show;
+import com.example.demo.entities.ShowScreen;
 
 @Repository
-public interface ShowRepo extends CrudRepository<Show, Integer> {
+public interface ShowRepo extends CrudRepository<ShowScreen, Integer> {
 
 }
