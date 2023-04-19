@@ -39,7 +39,7 @@ public class UserController {
 	public User getUserByEmail(@PathVariable String email)
 	{
 		
-		System.out.println("Get user API calling "+email);
+		System.out.println("Get user API calling for fetching particular user based on email "+email);
 	    return service.getUserByEmail(email);
 	}
 	
