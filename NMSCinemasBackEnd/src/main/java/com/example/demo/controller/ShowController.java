@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +32,12 @@ public class ShowController {
   {
 	  System.out.println(showService.getAllMovie());
 	  return showService.getAllMovie();
+  }
+  
+  @GetMapping("/getShowByMovieName/{movieName}")
+  public List<ShowScreen> getShowByMovieName(@PathVariable("movieName") String movieName)
+  {
+	  return showService.getShowByMovieName(movieName);
   }
 	
 }
