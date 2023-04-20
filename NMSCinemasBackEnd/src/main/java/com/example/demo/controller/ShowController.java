@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +23,13 @@ public class ShowController {
   public ShowScreen addShow(@RequestBody ShowScreen show)
   {
 	  return showService.addShow(show);
+  }
+  
+  @GetMapping("/getAllMovie")
+  public Set<String> getAllMovie()
+  {
+	  System.out.println(showService.getAllMovie());
+	  return showService.getAllMovie();
   }
 	
 }
