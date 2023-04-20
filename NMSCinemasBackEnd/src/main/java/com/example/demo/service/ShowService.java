@@ -34,4 +34,9 @@ public class ShowService  {
 		
 		return movieName;
 	}
+
+	public List<ShowScreen> getShowByMovieName(String movieName) {
+		
+		return showRepo.findByMovieName(movieName);
+	}
 }
