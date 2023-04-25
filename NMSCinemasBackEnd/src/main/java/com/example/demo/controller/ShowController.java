@@ -39,5 +39,11 @@ public class ShowController {
   {
 	  return showService.getShowByMovieName(movieName);
   }
+  
+  @PostMapping("/updateShowById")
+  public ShowScreen updateShowById(@RequestBody ShowScreen showScreen)
+  {
+	  return showService.updateShowById(showScreen);
+  }
 	
 }

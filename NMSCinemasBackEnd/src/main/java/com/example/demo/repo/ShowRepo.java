@@ -11,5 +11,7 @@ import com.example.demo.entities.ShowScreen;
 public interface ShowRepo extends CrudRepository<ShowScreen, Integer> {
 
 	List<ShowScreen> findByMovieName(String movieName);
+	
+	ShowScreen findById(int id);
 
 }

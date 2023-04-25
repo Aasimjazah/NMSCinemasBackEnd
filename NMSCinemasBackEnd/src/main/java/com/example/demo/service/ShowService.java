@@ -39,4 +39,9 @@ public class ShowService  {
 		
 		return showRepo.findByMovieName(movieName);
 	}
+	
+	public ShowScreen updateShowById(ShowScreen showScreen)
+	{	
+		return showRepo.save(showScreen);
+	}
 }
