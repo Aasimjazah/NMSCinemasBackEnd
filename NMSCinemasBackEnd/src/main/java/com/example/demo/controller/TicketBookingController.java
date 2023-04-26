@@ -30,7 +30,7 @@ public class TicketBookingController {
 	@GetMapping("/getTicketsByEmail/{email}")
 	public List<TicketBoooking> getTicketsByEmail(@PathVariable("email") String email)
 	{
-		return bookingService.getTicketsByEmail(email);
+		return bookingService.getTicketsByEmail( email);
 	}
 
 }
