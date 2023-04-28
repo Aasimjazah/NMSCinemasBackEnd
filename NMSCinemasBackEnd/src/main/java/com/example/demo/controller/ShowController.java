@@ -32,6 +32,7 @@ public class ShowController {
 
 	@PostMapping("/addShow")
 	public ShowScreen addShow(@RequestBody ShowScreen show) {
+		System.out.println(show);
 		return showService.addShow(show);
 	}
 
@@ -80,6 +81,31 @@ public class ShowController {
 		System.out.println("inside getByMovieName");
 		try {
 			Map<String,String> shows = showService.getByMovieName(movieName);
+			return new ResponseEntity<>(shows, HttpStatus.OK);
+		} 
+		catch (ShowException e) 
+		{
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping("/getMovieByLanguage/{language}")
+	public ResponseEntity<?> getMovieByLanguage(@PathVariable("language") String language) throws ShowException {
+		try {
+			Map<String,String> shows = showService.getMovieByLanguage(language);
+			return new ResponseEntity<>(shows, HttpStatus.OK);
+		} 
+		catch (ShowException e) 
+		{
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping("/getAllShows")
+	public ResponseEntity<?> getAllShows() throws ShowException {
+		System.out.println("inside getByMovieName");
+		try {
+			List<ShowScreen> shows = showService.getAllShows();
 			return new ResponseEntity<>(shows, HttpStatus.OK);
 		} 
 		catch (ShowException e) 
