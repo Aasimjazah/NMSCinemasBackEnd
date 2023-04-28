@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +73,18 @@ public class ShowController {
 		showRepo.saveAll(shows);
 //		product.setImgname(url);
 //		productRepo.save(product);
+	}
+	
+	@GetMapping("/getByMovieName/{movieName}")
+	public ResponseEntity<?> getByMovieName(@PathVariable("movieName") String movieName) throws ShowException {
+		System.out.println("inside getByMovieName");
+		try {
+			Map<String,String> shows = showService.getByMovieName(movieName);
+			return new ResponseEntity<>(shows, HttpStatus.OK);
+		} 
+		catch (ShowException e) 
+		{
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
 	}
 }
