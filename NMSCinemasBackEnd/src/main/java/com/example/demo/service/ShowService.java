@@ -14,49 +14,49 @@ import com.example.demo.entities.ShowScreen;
 import com.example.demo.repo.ShowRepo;
 
 @Service
-public class ShowService  {
+public class ShowService {
 
-	
 	@Autowired
 	private ShowRepo showRepo;
-	
-	public ShowScreen addShow(ShowScreen show)
-	{
+
+	public ShowScreen addShow(ShowScreen show) {
 		return showRepo.save(show);
 	}
-	
-	public Map<String,String> getAllMovie() throws ShowException
-	{
-		Map<String,String> movieName = new HashMap<>();
+
+	public Map<String, String> getAllMovie() throws ShowException {
+		Map<String, String> movieName = new HashMap<>();
 		List<ShowScreen> shows = (List<ShowScreen>) showRepo.findAll();
-		if(shows!=null)
-		{
-		
-			for(ShowScreen show:shows)
-			{
+		if (shows != null) {
+
+			for (ShowScreen show : shows) {
 				movieName.put(show.getMovieName(), show.getImgName());
 			}
 			return movieName;
-		}
-		else
+		} else
 			throw new ShowException("shows does not exist");
-		
-		
+
 	}
 
 	public List<ShowScreen> getShowByMovieName(String movieName) throws ShowException {
-		
-		List<ShowScreen> movies=showRepo.findByMovieName(movieName);
-		if(!movies.isEmpty())
-		{
-		  return movies;
-		}
-		else
+
+		List<ShowScreen> movies = showRepo.findByMovieName(movieName);
+		if (!movies.isEmpty()) {
+			return movies;
+		} else
 			throw new ShowException("movie does not exist with this name");
 	}
-	
-	public ShowScreen updateShowById(ShowScreen showScreen)
-	{	
+
+	public ShowScreen updateShowById(ShowScreen showScreen) {
 		return showRepo.save(showScreen);
+	}
+
+	public Map<String, String> getByMovieName(String movieName) throws ShowException {
+
+		List<ShowScreen> shows = showRepo.findByMovieName(movieName);
+		Map<String, String> movies = new HashMap<String, String>();
+		for (ShowScreen show : shows) {
+			movies.put(show.getMovieName(), show.getImgName());
+		}
+		return movies;
 	}
 }
