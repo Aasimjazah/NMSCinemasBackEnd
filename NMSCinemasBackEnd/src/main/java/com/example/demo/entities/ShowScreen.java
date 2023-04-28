@@ -14,6 +14,8 @@ public class ShowScreen
 	
     private String movieName;
     
+    private String imgName;
+    
     private String language;
     
     private String date;
@@ -133,7 +135,7 @@ public class ShowScreen
 
 	
 	
-	public ShowScreen(int id, String movieName, String language, String date, String time, String price, String a1, String a2, String a3,
+	public ShowScreen(int id, String movieName,String imgName, String language, String date, String time, String price, String a1, String a2, String a3,
 			String a4, String a5, String a6, String a7, String a8, String b1, String b2, String b3, String b4,
 			String b5, String b6, String b7, String b8, String c1, String c2, String c3, String c4, String c5,
 			String c6, String c7, String c8, String d1, String d2, String d3, String d4, String d5, String d6,
@@ -142,10 +144,12 @@ public class ShowScreen
 		super();
 		this.id = id;
 		this.movieName = movieName;
+		this.imgName=imgName;
 		this.language = language;
 		this.date = date;
 		this.time = time;
 		this.price = price;
+		
 		A1 = a1;
 		A2 = a2;
 		A3 = a3;
@@ -213,6 +217,17 @@ public class ShowScreen
 	public void setMovieName(String movieName) {
 		this.movieName = movieName;
 	}
+
+	
+	public String getImgName() {
+		return imgName;
+	}
+
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
+
+
 
 	public String getPrice() {
 		return price;

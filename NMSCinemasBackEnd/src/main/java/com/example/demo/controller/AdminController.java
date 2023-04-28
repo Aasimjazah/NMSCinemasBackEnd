@@ -1,11 +1,14 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.Exception.AdminException;
 import com.example.demo.entities.Admin;
 import com.example.demo.service.AdminService;
 
@@ -18,22 +21,14 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@PostMapping("/addAdmin")
-	public Admin addAdmin(@RequestBody Admin admin)
+	public ResponseEntity<?> addAdmin(@RequestBody Admin admin) throws AdminException
 	{
-		return adminService.addAdmin(admin);
+		return new ResponseEntity<>(adminService.addAdmin(admin),HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/checkAdmin")
-	public Admin getAdmin(@RequestBody Admin admin)
+	public ResponseEntity<?> getAdmin(@RequestBody Admin admin) throws AdminException
 	{
-		return adminService.getAdmin(admin);
-	}
-	
-	@PostMapping("/resetpassword")
-	public Admin resetPassword(@RequestBody Admin admin)
-	{
-		System.out.println(admin);
-		return adminService.findByUsername(admin.getEmail());
- 
+		return new ResponseEntity<>(adminService.getAdmin(admin),HttpStatus.OK);
 	}
 }
