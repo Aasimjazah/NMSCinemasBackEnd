@@ -38,9 +38,9 @@ public class ShowService {
 
 	}
 
-	public List<ShowScreen> getShowByMovieName(String movieName) throws ShowException {
+	public List<ShowScreen> getShowByMovieName(String status, String movieName) throws ShowException {
 
-		List<ShowScreen> movies = showRepo.findByMovieName(movieName);
+		List<ShowScreen> movies = showRepo.getShowsByMovie(status, movieName);
 		if (!movies.isEmpty()) {
 			return movies;
 		} else
@@ -73,5 +73,14 @@ public class ShowService {
 	public List<ShowScreen> getAllShows() throws ShowException {
 		
 		return (List<ShowScreen>) showRepo.findAll();
+	}
+	
+	public ShowScreen changeShowStatus(int id)
+	{
+		ShowScreen show = showRepo.findById(id);
+		show.setStatus("disabled");
+		showRepo.save(show);
+		return show;
+		
 	}
 }

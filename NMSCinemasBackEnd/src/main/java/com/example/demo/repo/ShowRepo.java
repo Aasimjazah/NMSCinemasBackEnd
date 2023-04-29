@@ -22,7 +22,7 @@ public interface ShowRepo extends CrudRepository<ShowScreen, Integer> {
 	List<ShowScreen> findByLanguage(String language);
 
 	
-	@Query(value="select * from show_screen p where p.status='enable' like %:search%" , nativeQuery=true)
-	List<ShowScreen> getShowsByMovie();
+	@Query(value="select * from show_screen p where p.status=:status and p.movie_name = :mn" , nativeQuery=true)
+	List<ShowScreen> getShowsByMovie(@Param("status")String status ,@Param("mn")String mn);
 
 }

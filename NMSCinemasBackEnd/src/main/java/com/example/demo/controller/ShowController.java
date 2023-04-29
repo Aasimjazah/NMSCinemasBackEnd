@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Exception.ShowException;
@@ -45,7 +46,7 @@ public class ShowController {
 	@GetMapping("/getShowByMovieName/{movieName}")
 	public ResponseEntity<?> getShowByMovieName(@PathVariable("movieName") String movieName) throws ShowException {
 		try {
-			List<ShowScreen> shows = showService.getShowByMovieName(movieName);
+			List<ShowScreen> shows = showService.getShowByMovieName("enable",movieName);
 			return new ResponseEntity<>(shows, HttpStatus.OK);
 		} 
 		catch (ShowException e) 
@@ -112,5 +113,12 @@ public class ShowController {
 		{
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@PostMapping("/changeShowStatus/{id}")
+	public ShowScreen changeShowStatus(@PathVariable("id") int id, @RequestBody String status)
+	{
+		System.out.println(id);
+		return showService.changeShowStatus(id);
 	}
 }
