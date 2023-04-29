@@ -20,6 +20,7 @@ public class ShowService {
 	private ShowRepo showRepo;
 
 	public ShowScreen addShow(ShowScreen show) {
+		show.setStatus("enable");
 		return showRepo.save(show);
 	}
 
@@ -58,5 +59,19 @@ public class ShowService {
 			movies.put(show.getMovieName(), show.getImgName());
 		}
 		return movies;
+	}
+
+	public Map<String, String> getMovieByLanguage(String language)throws ShowException {
+		List<ShowScreen> shows = showRepo.findByLanguage(language);
+		Map<String, String> movies = new HashMap<String, String>();
+		for (ShowScreen show : shows) {
+			movies.put(show.getMovieName(), show.getImgName());
+		}
+		return movies;
+	}
+
+	public List<ShowScreen> getAllShows() throws ShowException {
+		
+		return (List<ShowScreen>) showRepo.findAll();
 	}
 }
